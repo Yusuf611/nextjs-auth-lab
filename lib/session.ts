@@ -10,11 +10,10 @@ export const sessionOptions = {
   password: process.env.SESSION_PASSWORD!,
   cookieName: "next-auth-rbac-session",
   cookieOptions: {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax" as const,
-    path: "/",
-  },
+  sameSite: "none",
+  secure: false,
+  path: "/",
+},
 };
 
 export async function getSession() {
@@ -23,7 +22,7 @@ export async function getSession() {
   const session = await getIronSession<SessionData>(
     {
       get: (key: string) => cookieStore.get(key)?.value,
-      set: () => {},       // not used for writes here
+      set: () => {},
       remove: () => {},
     } as any,
     sessionOptions

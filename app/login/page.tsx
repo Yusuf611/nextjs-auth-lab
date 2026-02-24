@@ -1,7 +1,12 @@
 "use client";
+
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Login() {
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") || "/dashboard";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,24 +29,21 @@ export default function Login() {
       return;
     }
 
-    window.location.href = "/dashboard";
+    
+    window.location.href = next;
   }
 
   return (
     <div className="flex items-center justify-center min-h-[80vh]">
       <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-700">
         <h1 className="text-3xl font-bold text-center mb-6">Welcome Back 👋</h1>
-        <p className="text-gray-400 text-center mb-8">
-          Login to your secure dashboard
-        </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-sm text-gray-400 mb-1">Email</label>
             <input
               type="email"
-              className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="you@example.com"
+              className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -52,8 +54,7 @@ export default function Login() {
             <label className="block text-sm text-gray-400 mb-1">Password</label>
             <input
               type="password"
-              className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="••••••••"
+              className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

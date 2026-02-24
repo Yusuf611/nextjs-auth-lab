@@ -12,7 +12,6 @@ const UserSchema = new Schema({
   },
 }, { timestamps: true });
 
-/* Hash password before saving */
 UserSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
 
@@ -20,7 +19,7 @@ UserSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-/* Compare password */
+
 UserSchema.methods.comparePassword = function (password: string) {
   return bcrypt.compare(password, this.password);
 };
