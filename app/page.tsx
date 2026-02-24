@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] text-center space-y-6">
-      <h1 className="text-5xl font-bold">🔐 Secure Auth System</h1>
+      <h1 className="text-5xl font-bold">Auth System</h1>
       <p className="text-gray-400 max-w-xl">
-        Cookie-based authentication with Role-Based Access Control (RBAC) using Next.js.
+        Cookie-based authentication with Role-Based Access Control.
       </p>
 
       <div className="space-x-4">
