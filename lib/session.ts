@@ -11,7 +11,7 @@ export const sessionOptions = {
   cookieName: "next-auth-rbac-session",
   cookieOptions: {
   sameSite: "none",
-  secure: false,
+  secure: true,
   path: "/",
 },
 };
